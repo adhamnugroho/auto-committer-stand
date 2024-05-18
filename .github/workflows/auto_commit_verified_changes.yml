@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main  # Ganti dengan branch yang diinginkan
+  schedule:
+    - cron: '* * * * *'
 
 jobs:
   auto_commit_verified_changes:
