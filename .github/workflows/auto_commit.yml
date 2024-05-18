@@ -30,14 +30,3 @@ jobs:
           branch: main
           # Set the Git credentials - replace this with your own secrets
           github_token: ${{ secrets.GH_TOKEN }}
-      - name: Open pull request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          title: "Daily Contribution"
-          commit-message: "Daily contribution"
-          branch: daily-contribution
-          base: main
-          # Set the pull request body - replace this with your own content
-          body: "This pull request was created automatically by a GitHub Actions workflow to make a daily contribution."
-          # Set the Git credentials - replace this with your own secrets
-          token: ${{ secrets.GH_TOKEN }}
