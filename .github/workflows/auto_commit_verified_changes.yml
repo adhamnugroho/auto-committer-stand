@@ -1,0 +1,36 @@
+name: Auto Commit Verified Changes
+
+on:
+  push:
+    branches:
+      - main  # Ganti dengan branch yang diinginkan
+
+jobs:
+  auto_commit_verified_changes:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      
+    - name: Verify Changes
+      id: verify_changes
+      run: |
+        # Skrip untuk memeriksa perubahan yang diverifikasi
+        # Misalnya:
+        # if git log --format=%B -n 1 ${{ github.event.before }}..${{ github.sha }} | grep -q "Verified"; then
+        #   echo "::set-output name=verified_changes::true"
+        # else
+        #   echo "::set-output name=verified_changes::false"
+        # fi
+        # Pengaturan output:
+        # echo "::set-output name=verified_changes::true/false"
+
+    - name: Commit Verified Changes
+      if: steps.verify_changes.outputs.verified_changes == 'true'
+      run: |
+        git config --local user.email "adhamnugroho@github.com"
+        git config --local user.name "adhamnugroho"
+        git add .
+        git commit -m "Auto commit verified changes"
+        git push
