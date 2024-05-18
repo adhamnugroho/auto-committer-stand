@@ -22,11 +22,12 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
+          git add .
           git commit -S -m "Daily contribution"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          branch: daily-contribution
+          branch: main
           # Set the Git credentials - replace this with your own secrets
           github_token: ${{ secrets.GH_TOKEN }}
       - name: Open pull request
